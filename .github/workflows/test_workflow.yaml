@@ -6,8 +6,33 @@ jobs:
   install_macports:
     runs-on: macos-11
     steps:
-    - name: Install macports
+    - name: Install dependencies
+      run: |
+        brew install wget sqlite
+    - name: Install macports package manager
       run: |
         wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
-        installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
+        sudo installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
+        rm -rf MacPorts-2.8.1-11-BigSur.pkg
+    - name: Install ports
+      run: |
+        sudo /opt/local/bin/port install neovim
+    - name: Get platform
+      run: |
+        python3 -c "import sys; print(sys.platform)"
+    - name: Get files
+      run: |
+        ls /opt/local/var/macports/registry
+    - name: Get ports
+      run: |
+        sqlite3 /opt/local/var/macports/registry/registry.db "select * from ports where name='neovim'"
+    - name: Download and compile
+      run: |
+        wget https://github.com/wazuh/wazuh/archive/refs/heads/dev-15877-macport_pkgs-implementation.zip
+        unzip dev-15877-macport_pkgs-implementation.zip
+        make deps -C wazuh-dev-15877-macport_pkgs-implementation/src TARGET=agent -j2
+        make -C wazuh-dev-15877-macport_pkgs-implementation/src TARGET=agent -j2
+    - name: Execute data provider
+      run: |
+        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages
 
