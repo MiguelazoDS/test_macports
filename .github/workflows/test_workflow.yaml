@@ -1,0 +1,13 @@
+name: Docker Pull Image
+run-name: ${{github.actor}}POC ${{github.base_ref}}
+on: [pull_request, push]
+
+jobs:
+  install_macports:
+    runs-on: macos-11
+    steps:
+    - name: Install macports
+      run: |
+        wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
+        installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
+
