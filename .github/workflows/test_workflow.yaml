@@ -34,5 +34,6 @@ jobs:
         make -C wazuh-dev-15877-macport_pkgs-implementation/src TARGET=agent -j2
     - name: Execute data provider
       run: |
-        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages
+        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages |grep "macports"
+        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages |grep "pkg"
 
