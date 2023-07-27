@@ -17,9 +17,6 @@ jobs:
     - name: Install ports
       run: |
         sudo /opt/local/bin/port install neovim ranger htop
-    - name: Get platform
-      run: |
-        python3 -c "import sys; print(sys.platform)"
     - name: Get files
       run: |
         ls /opt/local/var/macports/registry
@@ -40,6 +37,6 @@ jobs:
       run: |
         pip install -r wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider/qa/requirements.txt
         cd wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider
-        python3 -m pytest -vv qa/
+        python -m pytest -vv qa/
 
 
