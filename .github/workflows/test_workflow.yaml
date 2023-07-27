@@ -28,12 +28,12 @@ jobs:
         sqlite3 /opt/local/var/macports/registry/registry.db "select * from ports where name='neovim'"
     - name: Download and compile
       run: |
-        wget https://github.com/wazuh/wazuh/archive/refs/heads/dev-15877-macport_pkgs-implementation.zip
-        unzip dev-15877-macport_pkgs-implementation.zip
-        make deps -C wazuh-dev-15877-macport_pkgs-implementation/src TARGET=agent -j2
-        make -C wazuh-dev-15877-macport_pkgs-implementation/src TARGET=agent -j2
+        #wget https://github.com/wazuh/wazuh/archive/refs/heads/dev-15877-macport_pkgs-implementation.zip
+        wget https://github.com/wazuh/wazuh/archive/refs/heads/dev-15877-macport_pkgs-implementation-rebased.zip
+        unzip dev-15877-macport_pkgs-implementation-rebased.zip
+        make deps -C wazuh-dev-15877-macport_pkgs-implementation-rebased/src TARGET=agent -j2
+        make -C wazuh-dev-15877-macport_pkgs-implementation-rebased/src TARGET=agent -j2
     - name: Execute data provider
       run: |
-        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages |grep "macports"
-        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages |grep "pkg"
+        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages
 
