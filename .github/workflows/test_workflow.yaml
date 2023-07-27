@@ -16,7 +16,7 @@ jobs:
         rm -rf MacPorts-2.8.1-11-BigSur.pkg
     - name: Install ports
       run: |
-        sudo /opt/local/bin/port install neovim
+        sudo /opt/local/bin/port install neovim ranger htop
     - name: Get platform
       run: |
         python3 -c "import sys; print(sys.platform)"
@@ -35,5 +35,5 @@ jobs:
         make -C wazuh-dev-15877-macport_pkgs-implementation-rebased/src TARGET=agent -j2
     - name: Execute data provider
       run: |
-        wazuh-dev-15877-macport_pkgs-implementation/src/data_provider/build/bin/sysinfo_test_tool --packages
+        wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider/build/bin/sysinfo_test_tool --packages
 
