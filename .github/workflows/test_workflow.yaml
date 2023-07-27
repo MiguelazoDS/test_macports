@@ -36,4 +36,10 @@ jobs:
     - name: Execute data provider
       run: |
         wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider/build/bin/sysinfo_test_tool --packages
+    - name: Execute pytest
+      run: |
+        pip install -r src/data_provider/qa/requirements.txt
+        cd src/data_provider
+        python -m pytest -vv qa/
+
 
