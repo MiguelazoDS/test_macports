@@ -43,6 +43,6 @@ jobs:
       run: |
         pip3 install -r wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider/qa/requirements.txt
         cd wazuh-dev-15877-macport_pkgs-implementation-rebased/src/data_provider
-        python3 -m pytest -vv qa/
+        sudo python3 -m pytest -vv qa/
 
 
