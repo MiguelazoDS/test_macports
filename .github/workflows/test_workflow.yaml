@@ -13,6 +13,7 @@ jobs:
         python --version
         python3 --version
         #python3 -c "import subprocess; result = subprocess.run(['npm','--version'],capture_output=True,shell=True); print(result.stdout.strip())"
+        npm install json yaml path
         python3 -c "import subprocess; result = subprocess.run(['npm','list'],capture_output=True,shell=True); print(result.stdout.strip())"
   check-npm-mac:
     runs-on: macos-11
