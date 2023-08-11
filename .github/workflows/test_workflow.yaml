@@ -12,6 +12,7 @@ jobs:
         npx --version
         python --version
         python3 --version
+        python -c 'import subprocess; result = subprocess.run(["npm","--version"],capture_output=True); print(result.stdout.strip())'
 
   #install_macports:
     #runs-on: macos-11
