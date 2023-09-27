@@ -39,6 +39,7 @@ jobs:
         rm -rf MacPorts-2.8.1-11-BigSur.pkg
     - name: Install ports
       run: |
+        sudo /opt/local/bin/port selfupdate
         sudo /opt/local/bin/port install neovim ranger htop
     #- name: Get files
       #run: |
