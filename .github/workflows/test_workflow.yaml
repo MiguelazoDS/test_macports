@@ -3,43 +3,43 @@ run-name: ${{github.actor}}POC ${{github.base_ref}}
 on: [pull_request, push]
 
 jobs:
-  check-npm:
-    runs-on: windows-latest
-    steps:
-    - name: check npm
-      run: |
-        npm --version
-        npx --version
-        python --version
-        python3 --version
-        #python3 -c "import subprocess; result = subprocess.run(['npm','--version'],capture_output=True,shell=True); print(result.stdout.strip())"
-        npm install json yaml path
-        python3 -c "import subprocess; result = subprocess.run(['npm','list'],capture_output=True,shell=True); print(result.stdout.strip())"
-  check-npm-mac:
-    runs-on: macos-11
-    steps:
-    - name: check npm
-      run: |
-        npm --version
-        npx --version
-        python --version
-        python3 --version
-        python3 -c "import subprocess; result = subprocess.run(['npm','--version'],capture_output=True); print(result.stdout.strip())"
-
-  #install_macports:
+  #check-npm:
+    #runs-on: windows-latest
+    #steps:
+    #- name: check npm
+      #run: |
+        #npm --version
+        #npx --version
+        #python --version
+        #python3 --version
+        ##python3 -c "import subprocess; result = subprocess.run(['npm','--version'],capture_output=True,shell=True); print(result.stdout.strip())"
+        #npm install json yaml path
+        #python3 -c "import subprocess; result = subprocess.run(['npm','list'],capture_output=True,shell=True); print(result.stdout.strip())"
+  #check-npm-mac:
     #runs-on: macos-11
     #steps:
-    #- name: Install dependencies
+    #- name: check npm
       #run: |
-        #brew install wget sqlite
-    #- name: Install macports package manager
-      #run: |
-        #wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
-        #sudo installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
-        #rm -rf MacPorts-2.8.1-11-BigSur.pkg
-    #- name: Install ports
-      #run: |
-        #sudo /opt/local/bin/port install neovim ranger htop
+        #npm --version
+        #npx --version
+        #python --version
+        #python3 --version
+        #python3 -c "import subprocess; result = subprocess.run(['npm','--version'],capture_output=True); print(result.stdout.strip())"
+
+  install_macports:
+    runs-on: macos-11
+    steps:
+    - name: Install dependencies
+      run: |
+        brew install wget sqlite
+    - name: Install macports package manager
+      run: |
+        wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
+        sudo installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
+        rm -rf MacPorts-2.8.1-11-BigSur.pkg
+    - name: Install ports
+      run: |
+        sudo /opt/local/bin/port install neovim ranger htop
     #- name: Get files
       #run: |
         #ls /opt/local/var/macports/registry
