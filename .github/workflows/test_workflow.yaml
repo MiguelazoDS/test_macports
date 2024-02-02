@@ -40,7 +40,7 @@ jobs:
     - name: Install ports
       run: |
         #sudo /opt/local/bin/port selfupdate
-        sudo /opt/local/bin/port install nano
+        sudo /opt/local/bin/port -b install nano
     #- name: Get files
       #run: |
         #ls /opt/local/var/macports/registry
