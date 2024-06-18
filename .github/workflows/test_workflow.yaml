@@ -3,11 +3,33 @@ run-name: ${{github.actor}}POC ${{github.base_ref}}
 on: [pull_request, push]
 
 jobs:
-  install_macports:
-    runs-on: macos-11
+  scheduled:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        item: ["test"]
+
     steps:
-    - name: Install macports
-      run: |
-        wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
-        installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
+      - name: checkout branch
+        uses: actions/checkout@v3
+        with:
+          submodule: recursive
+          fetch-depth: 0
+          ref: ${{ matrix.item }}
+
+      - name: Checkout to tag
+        run: |
+          if git show-ref --tags --verify --quiet "refs/tags/v${{ matrix.test }}"; then
+            git checkout --quiet "tags/v${{ matrix.test }}"
+          else
+            echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
+          fi
+  #install_macports:
+    #runs-on: macos-11
+    #steps:
+    #- name: Install macports
+      #run: |
+        #wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
+        #installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
 
