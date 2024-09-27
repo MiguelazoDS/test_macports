@@ -27,11 +27,10 @@ jobs:
             #echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
           #fi
 
-      - name: Checkout some folder short
-        run: git checkout test_branch
-
-      #- name: Checkout some folders
-        #run: |
+      - name: Checkout some folders
+        run: |
+          git checkout test_branch
+          cat Readme.md
           #echo "Restoring GitHub Actions workflows"
           #directories=".github/workflows"
           #git checkout master -- .github/workflows
