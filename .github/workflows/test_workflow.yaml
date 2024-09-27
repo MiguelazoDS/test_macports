@@ -47,8 +47,8 @@ jobs:
       - name: Checkout specific folder
         uses: actions/checkout@v4
         with:
+          checkout: ".github/workflows"
           ref: test_branch
-          sparse-checkout: ".github/workflows"
 
       - name: Checkout single file
         run: |
