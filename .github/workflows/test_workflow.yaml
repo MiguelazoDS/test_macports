@@ -30,7 +30,8 @@ jobs:
         run: |
           echo "Restoring GitHub Actions workflows"
           directories=".github/workflows"
-          git checkout master .github/workflows
+          #git checkout master .github/workflows
+          git checkout master
           if [ $? -eq 0 ]; then
             echo "Successfully restored ${directories} directories"
           else
