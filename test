@@ -1,3 +1,4 @@
+I'm test_branch
 name: Docker Pull Image
 run-name: ${{github.actor}}POC ${{github.base_ref}}
 on: [pull_request, push]
@@ -30,8 +31,7 @@ jobs:
 
       - name: Checkout some folders
         run: |
-          #git checkout test_branch
-          git branch
+          git checkout test_branch
           cat Readme.md
           cat .github/workflows/test_workflow.yaml
           #echo "Restoring GitHub Actions workflows"
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout specific folder
         uses: actions/checkout@v4
         with:
-          ref: test_branch
+          ref: master
           sparse-checkout: ".github/workflows"
 
       - name: Checkout single file
@@ -70,4 +70,3 @@ jobs:
       #run: |
         #wget https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1-11-BigSur.pkg
         #installer -pkg MacPorts-2.8.1-11-BigSur.pkg -target /
-
