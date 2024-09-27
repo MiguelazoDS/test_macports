@@ -18,6 +18,11 @@ jobs:
           fetch-depth: 0
           #ref: ${{ matrix.item }}
 
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/appvps.yaml
+
       #- name: Checkout to tag
         #run: |
           #if git show-ref --tags --verify --quiet "refs/tags/v${{ matrix.test }}"; then
@@ -27,12 +32,11 @@ jobs:
           #fi
 
       - name: Checkout some folders
-        run: |
+        run: >-
           set -x
           echo "Restoring GitHub Actions workflows"
           directories=".github/workflows"
           git checkout master -- .github/workflows
-          #git checkout master
           if [ $? -eq 0 ]; then
             echo "Successfully restored ${directories} directories"
           else
