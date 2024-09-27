@@ -44,14 +44,15 @@ jobs:
             #exit 1
           #fi
 
-      - name: Checkout specific folder
-        uses: actions/checkout@v4
-        with:
-          checkout: ".github/workflows"
-          ref: test_branch
+      #- name: Checkout specific folder
+        #uses: actions/checkout@v4
+        #with:
+          #checkout: ".github/workflows"
+          #ref: test_branch
 
       - name: Checkout single file
         run: |
+          git checkout test_branch .github/workflows/test_workflow.yaml
           git branch
           cat Readme.md
           cat .github/workflows/test_workflow.yaml
