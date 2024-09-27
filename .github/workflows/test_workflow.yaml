@@ -47,7 +47,7 @@ jobs:
       - name: Checkout specific folder
         uses: actions/checkout@v4
         with:
-          sparse-checkout: "Readme.md"
+          sparse-checkout: ".github/workflows"
 
       - name: Checkout single file
         run: |
