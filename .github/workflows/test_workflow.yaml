@@ -28,6 +28,7 @@ jobs:
 
       - name: Checkout some folders
         run: |
+          set -x
           echo "Restoring GitHub Actions workflows"
           directories=".github/workflows"
           git checkout master -- .github/workflows
