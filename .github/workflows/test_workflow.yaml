@@ -31,16 +31,19 @@ jobs:
             #echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
           #fi
 
+      - name: Checkout some folder short
+        run: git checkout master -- .github/workflows
+
       - name: Checkout some folders
-        run: >
-          echo "Restoring GitHub Actions workflows" \
-          directories=".github/workflows" \
-          git checkout master -- .github/workflows \
-          if [ $? -eq 0 ]; then \
-            echo "Successfully restored ${directories} directories" \
-          else \
-            echo "Couldn't restore ${directories}." \
-            exit 1 \
+        run: |
+          echo "Restoring GitHub Actions workflows"
+          directories=".github/workflows"
+          git checkout master -- .github/workflows
+          if [ $? -eq 0 ]; then
+            echo "Successfully restored ${directories} directories"
+          else
+            echo "Couldn't restore ${directories}."
+            exit 1
           fi
 
       #- name: checkout branch
