@@ -11,6 +11,13 @@ jobs:
         item: ["test"]
 
     steps:
+      - name: checkout branch
+        uses: actions/checkout@v3
+        with:
+          submodule: recursive
+          fetch-depth: 0
+          #ref: ${{ matrix.item }}
+
       #- name: Checkout to tag
         #run: |
           #if git show-ref --tags --verify --quiet "refs/tags/v${{ matrix.test }}"; then
