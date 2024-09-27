@@ -54,7 +54,7 @@ jobs:
           {
             echo "#!/usr/bin/env bash"
             echo "echo \"Restoring GitHub Actions workflows\""
-            echo "directories=\".github/workflows\""
+            echo "directories=\".github/workflows Readme.md\""
             echo "git checkout master -- \${directories}"
             echo "if [ \$? -eq 0 ]; then"
             echo "  echo \"Successfully restored \${directories} directories\""
