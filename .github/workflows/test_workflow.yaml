@@ -32,6 +32,7 @@ jobs:
         run: |
           git checkout test_branch
           cat Readme.md
+          cat .github/workflows/test_workflow.yaml
           #echo "Restoring GitHub Actions workflows"
           #directories=".github/workflows"
           #git checkout master -- .github/workflows
@@ -47,6 +48,12 @@ jobs:
         with:
           ref: master
           path: ".github/workflows"
+
+      - name: Checkout single file
+        run: |
+          git branch
+          cat Readme.md
+          cat .github/workflows/test_workflow.yaml
 
       #- name: checkout branch
         #uses: actions/checkout@v3
