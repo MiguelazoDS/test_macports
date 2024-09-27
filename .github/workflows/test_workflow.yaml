@@ -11,20 +11,32 @@ jobs:
         item: ["test"]
 
     steps:
-      - name: Checkout to tag
+      #- name: Checkout to tag
+        #run: |
+          #if git show-ref --tags --verify --quiet "refs/tags/v${{ matrix.test }}"; then
+            #git checkout --quiet "tags/v${{ matrix.test }}"
+          #else
+            #echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
+          #fi
+
+      - name: Checkout some folders
         run: |
-          if git show-ref --tags --verify --quiet "refs/tags/v${{ matrix.test }}"; then
-            git checkout --quiet "tags/v${{ matrix.test }}"
+          echo "Restoring GitHub Actions workflows"
+          directories=".github/workflows"
+          git checkout master .github/workflows
+          if [ $? -eq 0 ]; then
+            echo "Successfully restored ${directories} directories"
           else
-            echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
+            echo "Couldn't restore ${directories}."
+            exit 1
           fi
 
-      - name: checkout branch
-        uses: actions/checkout@v3
-        with:
-          submodule: recursive
-          fetch-depth: 0
-          ref: ${{ matrix.item }}
+      #- name: checkout branch
+        #uses: actions/checkout@v3
+        #with:
+          #submodule: recursive
+          #fetch-depth: 0
+          #ref: ${{ matrix.item }}
 
   #install_macports:
     #runs-on: macos-11
