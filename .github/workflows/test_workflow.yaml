@@ -18,10 +18,6 @@ jobs:
           fetch-depth: 0
           #ref: ${{ matrix.item }}
 
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            .github/appvps.yaml
 
       #- name: Checkout to tag
         #run: |
@@ -32,19 +28,25 @@ jobs:
           #fi
 
       - name: Checkout some folder short
-        run: git checkout master -- .github/workflows
+        run: git checkout test_branch
 
-      - name: Checkout some folders
-        run: |
-          echo "Restoring GitHub Actions workflows"
-          directories=".github/workflows"
-          git checkout master -- .github/workflows
-          if [ $? -eq 0 ]; then
-            echo "Successfully restored ${directories} directories"
-          else
-            echo "Couldn't restore ${directories}."
-            exit 1
-          fi
+      #- name: Checkout some folders
+        #run: |
+          #echo "Restoring GitHub Actions workflows"
+          #directories=".github/workflows"
+          #git checkout master -- .github/workflows
+          #if [ $? -eq 0 ]; then
+            #echo "Successfully restored ${directories} directories"
+          #else
+            #echo "Couldn't restore ${directories}."
+            #exit 1
+          #fi
+
+      - name: Checkout specific folder
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: ".github/workflows"
 
       #- name: checkout branch
         #uses: actions/checkout@v3
