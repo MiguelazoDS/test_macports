@@ -37,15 +37,15 @@ jobs:
           sudo mkdir -p /var/lib/server/tmp
           sudo touch /var/lib/server/tmp/file
 
-      - name: Create file /var/lib
-        run: |
-          mkdir -p /var/lib/server/tmp
-          touch /var/lib/server/tmp/file
-
       - name: Create file /tmp/server
         run: |
           mkdir -p /tmp/server
           touch /tmp/server/file
+
+      - name: Create file /var/lib
+        run: |
+          mkdir -p /var/lib/server/tmp
+          touch /var/lib/server/tmp/file
 
       - name: Permissions
         run: |
