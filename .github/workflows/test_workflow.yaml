@@ -47,6 +47,11 @@ jobs:
           mkdir -p /tmp/server
           touch /tmp/server/file
 
+      - name: Permissions
+        run: |
+          ls -l /*
+          ls -l /var/*
+
       - name: Create file current dir with script
         run: |
           g++ main2.cpp && ./a.out
