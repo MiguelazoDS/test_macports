@@ -44,7 +44,7 @@ jobs:
 
       - name: Create file /var/lib with script
         run: |
-          g++ main1.cpp && ./a.out
+          g++ main1.cpp && sudo ./a.out
           touch /var/lib/server/tmp/file
 
       #- name: Checkout some folders
