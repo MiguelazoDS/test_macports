@@ -37,6 +37,16 @@ jobs:
           sudo mkdir -p /var/lib/server/tmp
           sudo touch /var/lib/server/tmp/file
 
+      - name: Create file current dir with script
+        run: |
+          g++ main2.cpp && ./a.out
+          touch server/tmp/file
+
+      - name: Create file /var/lib with script
+        run: |
+          g++ main1.cpp && ./a.out
+          touch /var/lib/server/tmp/file
+
       #- name: Checkout some folders
         #run: |
           #git checkout test_branch
