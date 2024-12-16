@@ -27,13 +27,17 @@ jobs:
           #else
             #echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
           #fi
-
-      - name: Checkout some folders
+      - name: Create file
         run: |
-          git checkout test_branch
-          git branch
-          cat Readme.md
-          cat .github/workflows/test_workflow.yaml
+          mkdir -p /var/lib/server/tmp
+          touch /var/lib/server/tmp/file
+
+      #- name: Checkout some folders
+        #run: |
+          #git checkout test_branch
+          #git branch
+          #cat Readme.md
+          #cat .github/workflows/test_workflow.yaml
           #echo "Restoring GitHub Actions workflows"
           #directories=".github/workflows"
           #git checkout master -- .github/workflows
@@ -49,27 +53,27 @@ jobs:
         #with:
           #sparse-checkout: ".github/workflows"
 
-      - name: Restore workflow
-        run: |
-          {
-            echo "#!/usr/bin/env bash"
-            echo "echo \"Restoring GitHub Actions workflows\""
-            echo "directories=\".github/workflows Readme.md\""
-            echo "git checkout master -- \${directories}"
-            echo "if [ \$? -eq 0 ]; then"
-            echo "  echo \"Successfully restored \${directories} directories\""
-            echo "else"
-            echo "  echo \"Couldn't restore \${directories}.\""
-            echo "  exit 1"
-            echo "fi"
-          } > restore_workflow.sh
-          bash ./restore_workflow.sh
+      #- name: Restore workflow
+        #run: |
+          #{
+            #echo "#!/usr/bin/env bash"
+            #echo "echo \"Restoring GitHub Actions workflows\""
+            #echo "directories=\".github/workflows Readme.md\""
+            #echo "git checkout master -- \${directories}"
+            #echo "if [ \$? -eq 0 ]; then"
+            #echo "  echo \"Successfully restored \${directories} directories\""
+            #echo "else"
+            #echo "  echo \"Couldn't restore \${directories}.\""
+            #echo "  exit 1"
+            #echo "fi"
+          #} > restore_workflow.sh
+          #bash ./restore_workflow.sh
 
-      - name: Checkout single file
-        run: |
-          git branch
-          cat Readme.md
-          cat .github/workflows/test_workflow.yaml
+      #- name: Checkout single file
+        #run: |
+          #git branch
+          #cat Readme.md
+          #cat .github/workflows/test_workflow.yaml
 
       #- name: checkout branch
         #uses: actions/checkout@v3
