@@ -27,10 +27,15 @@ jobs:
           #else
             #echo "Warning: Unable to find tag v${{ matrix.test }}. Continuing with branch ${{ matrix.test }}"
           #fi
-      - name: Create file
+      - name: Create file current dir
         run: |
-          mkdir -p /var/lib/server/tmp
-          touch /var/lib/server/tmp/file
+          mkdir -p server/tmp
+          touch server/tmp/file
+
+      - name: Create file /var/lib
+        run: |
+          sudo mkdir -p /var/lib/server/tmp
+          sudo touch /var/lib/server/tmp/file
 
       #- name: Checkout some folders
         #run: |
